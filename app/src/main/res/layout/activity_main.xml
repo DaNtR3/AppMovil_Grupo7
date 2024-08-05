@@ -4,13 +4,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@color/blue" >
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
+        android:fontFamily="@font/gupter_bold"
+        android:text="Hola....."
+        android:textColor="@color/yellow"
+        android:textSize="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <include
-        layout="@layout/activity_registro"
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="383dp"
+        android:layout_height="128dp"
+        android:layout_marginTop="144dp"
+        android:background="@drawable/edit_text_background_main"
+        android:fontFamily="@font/gupter_bold"
+        android:paddingLeft="12dp"
+        android:paddingTop="12dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="12dp"
+        android:text="Bienvenido al sistema de ventas ProPat, una solución integral diseñada para optimizar la gestión de sus operaciones comerciales. Transforme su manera de vender y alcance nuevos niveles de eficiencia y éxito!"
+        android:textAlignment="center"
+        android:textColor="@color/yellow"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="241dp"
+        android:layout_height="329dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:srcCompat="@drawable/bg_mainpage" />
+
+    <Button
+        android:id="@+id/btn_sign_in_main"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"/>
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/gupter_bold"
+        android:text="Iniciar sesión"
+        android:textColor="@color/blue"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_sign_up_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.628" />
 
+    <Button
+        android:id="@+id/btn_sign_up_main"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="72dp"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/gupter_bold"
+        android:text="Registrarse"
+        android:textColor="@color/blue"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
