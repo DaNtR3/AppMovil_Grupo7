@@ -9,8 +9,8 @@ import java.sql.SQLException
 class ConnectionSQLServer {
     private val ip = "192.168.0.2:1433"
     private val db = "sistema_ventas_propat"
-    private val username = "sa"
-    private val password = "welcome123"
+    private val username = "admin"
+    private val password = "test123"
 
     fun dbConn(): Connection? {
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
@@ -19,11 +19,9 @@ class ConnectionSQLServer {
         val connString: String
         try {
             Class.forName("net.sourceforge.jtds.jdbc.Driver")
-            connString =
-                "jdbc:jtds:sqlserver://$ip;databaseName=$db;user=$username; password=$password"
+            connString = "jdbc:jtds:sqlserver://$ip;databaseName=$db;user=$username;password=$password"
             conn = DriverManager.getConnection(connString)
         } catch (ex: SQLException) {
-
             Log.e("Error: ", ex.message!!)
         } catch (ex1: ClassNotFoundException) {
             Log.e("Error: ", ex1.message!!)
@@ -33,5 +31,4 @@ class ConnectionSQLServer {
         return conn
 
     }
-
 }

@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
+            <EditText
                 android:id="@+id/txt_phone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -67,6 +67,7 @@
                 android:drawableTint="@color/blue"
                 android:fontFamily="@font/gupter"
                 android:hint="Número de teléfono"
+                android:inputType="number"
                 android:padding="8dp"
                 android:textSize="18dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -131,14 +132,14 @@
                 android:ems="10"
                 android:fontFamily="@font/gupter"
                 android:hint="Cédula"
-                android:inputType="text"
+                android:inputType="number"
                 android:padding="8dp"
                 android:textAlignment="textStart"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_lastname" />
 
-            <TextView
+            <EditText
                 android:id="@+id/txt_address"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -151,6 +152,7 @@
                 android:drawableTint="@color/blue"
                 android:fontFamily="@font/gupter"
                 android:hint="Dirección"
+                android:inputType="text"
                 android:padding="8dp"
                 android:textSize="18dp"
                 app:layout_constraintEnd_toEndOf="parent"
