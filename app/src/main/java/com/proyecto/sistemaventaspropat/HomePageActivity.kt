@@ -14,7 +14,7 @@ class HomePageActivity : AppCompatActivity(){
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnSignOutHome.setOnClickListener {
+        binding.txtSignout.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }
     }
