@@ -82,8 +82,12 @@ class SignUpActivity : AppCompatActivity() {
                                         addUser.setString(8, phone)
                                         addUser.setString(9, formattedDateTime)
                                         addUser.executeUpdate()
-
-                                        startActivity(Intent(this, SignInActivity::class.java))
+                                        Toast.makeText(
+                                            this,
+                                            "Usuario registrado correctamente",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                        startActivity(Intent(this, MainActivity::class.java))
                                     } catch (ex: SQLException) {
                                         Toast.makeText(
                                             this,

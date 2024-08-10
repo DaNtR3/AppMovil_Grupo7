@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue"
-    tools:context=".SignUpActivity">
+    tools:context=".AddProductsActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -20,16 +20,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:fontFamily="@font/gupter_bold"
-        android:text="Bienvenido!!"
+        android:text="Añadir productos"
         android:textColor="@color/white"
         android:textSize="36dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.125"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSignUpBackbutton" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_products_back" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnSignUpBackbutton"
+        android:id="@+id/btn_products_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -55,39 +55,19 @@
             android:layout_height="match_parent">
 
             <EditText
-                android:id="@+id/txt_phone"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/edit_text_background"
-                android:drawableLeft="@drawable/baseline_local_phone_24"
-                android:drawablePadding="8dp"
-                android:drawableTint="@color/blue"
-                android:fontFamily="@font/gupter"
-                android:hint="Número de teléfono"
-                android:inputType="number"
-                android:padding="8dp"
-                android:textSize="18dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_address" />
-
-            <EditText
-                android:id="@+id/txtFirstname"
+                android:id="@+id/txt_product_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="28dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/edit_text_background"
-                android:drawableLeft="@drawable/baseline_person_add_24"
+                android:drawableLeft="@drawable/baseline_shopping_bag_24"
                 android:drawablePadding="8dp"
                 android:drawableTint="@color/blue"
                 android:ems="10"
                 android:fontFamily="@font/gupter"
-                android:hint="Nombre"
+                android:hint="Nombre producto"
                 android:inputType="text"
                 android:padding="8dp"
                 android:textAlignment="textStart"
@@ -97,125 +77,85 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/txtLastname"
+                android:id="@+id/txt_cost"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/edit_text_background"
-                android:drawableLeft="@drawable/baseline_person_add_24"
+                android:drawableLeft="@drawable/baseline_monetization_on_24"
                 android:drawablePadding="8dp"
                 android:drawableTint="@color/blue"
                 android:ems="10"
                 android:fontFamily="@font/gupter"
-                android:hint="Apellido"
+                android:hint="Precio"
+                android:inputType="numberDecimal"
+                android:padding="8dp"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_product_name" />
+
+            <EditText
+                android:id="@+id/txt_iva"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/edit_text_background"
+                android:drawableLeft="@drawable/baseline_attach_money_24"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/blue"
+                android:ems="10"
+                android:fontFamily="@font/gupter"
+                android:hint="IVA"
+                android:inputType="numberDecimal"
+                android:padding="8dp"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_cost" />
+
+            <EditText
+                android:id="@+id/txt_image_url"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/edit_text_background"
+                android:drawableLeft="@drawable/baseline_edit_document_24"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/blue"
+                android:ems="10"
+                android:fontFamily="@font/gupter"
+                android:hint="URL de la imagen"
                 android:inputType="text"
                 android:padding="8dp"
                 android:textAlignment="textStart"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtFirstname" />
-
-            <EditText
-                android:id="@+id/txtId"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/edit_text_background"
-                android:drawableLeft="@drawable/baseline_credit_card_24"
-                android:drawablePadding="8dp"
-                android:drawableTint="@color/blue"
-                android:ems="10"
-                android:fontFamily="@font/gupter"
-                android:hint="Cédula"
-                android:inputType="number"
-                android:padding="8dp"
-                android:textAlignment="textStart"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtLastname" />
-
-            <EditText
-                android:id="@+id/txt_address"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/edit_text_background"
-                android:drawableLeft="@drawable/baseline_maps_home_work_24"
-                android:drawablePadding="8dp"
-                android:drawableTint="@color/blue"
-                android:fontFamily="@font/gupter"
-                android:hint="Dirección"
-                android:inputType="text"
-                android:padding="8dp"
-                android:textSize="18dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.501"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_password" />
-
-            <EditText
-                android:id="@+id/txtEmail"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/edit_text_background"
-                android:drawableLeft="@drawable/baseline_email_24"
-                android:drawablePadding="8dp"
-                android:drawableTint="@color/blue"
-                android:ems="10"
-                android:fontFamily="@font/gupter"
-                android:hint="E-mail"
-                android:inputType="textEmailAddress"
-                android:padding="8dp"
-                android:textAlignment="textStart"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtId" />
-
-            <EditText
-                android:id="@+id/txt_password"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/edit_text_background"
-                android:drawableLeft="@drawable/baseline_lock_24"
-                android:drawablePadding="8dp"
-                android:drawableTint="@color/blue"
-                android:ems="10"
-                android:fontFamily="@font/gupter"
-                android:hint="Contraseña"
-                android:inputType="textPassword"
-                android:padding="8dp"
-                android:textAlignment="textStart"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_iva" />
 
             <Button
-                android:id="@+id/btnSignup"
+                android:id="@+id/btn_add_product"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="52dp"
                 android:backgroundTint="@color/blue"
-                android:text="Registrarse"
+                android:fontFamily="@font/gupter"
+                android:text="Añadir producto"
+                android:textSize="18dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_password"
-                app:layout_constraintVertical_bias="0.677" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -224,26 +164,17 @@
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintStart_toStartOf="parent"/>
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/gupter"
-                    android:paddingEnd="5dp"
-                    android:text="¿Tienes una cuenta?"
-                    android:textSize="17dp" />
-
-                <TextView
-                    android:id="@+id/txt_signin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/gupter_bold"
-                    android:text="Inicia sesión"
-                    android:textColor="@color/blue"
-                    android:textSize="17dp" />
-            </LinearLayout>
+            <ImageView
+                android:id="@+id/img_preview"
+                android:layout_width="190dp"
+                android:layout_height="163dp"
+                app:layout_constraintBottom_toTopOf="@+id/btn_add_product"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_image_url"
+                tools:srcCompat="@tools:sample/avatars" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

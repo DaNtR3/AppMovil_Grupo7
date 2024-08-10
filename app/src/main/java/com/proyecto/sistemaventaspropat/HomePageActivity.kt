@@ -17,5 +17,13 @@ class HomePageActivity : AppCompatActivity(){
         binding.txtSignout.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }
+
+        binding.linearLayoutInicio.setOnClickListener{
+            startActivity(Intent(this, HomePageActivity::class.java))
+        }
+
+        binding.linearLayoutProductosBar.setOnClickListener{
+            startActivity(Intent(this, AddProductsActivity::class.java))
+        }
     }
 }
