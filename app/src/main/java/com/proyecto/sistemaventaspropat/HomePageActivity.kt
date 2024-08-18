@@ -22,8 +22,15 @@ class HomePageActivity : AppCompatActivity(){
             startActivity(Intent(this, HomePageActivity::class.java))
         }
 
-        binding.linearLayoutProductosBar.setOnClickListener{
+        binding.linearlayoutAdminProductos.setOnClickListener{
             startActivity(Intent(this, CRUDProductsActivity::class.java))
+        }
+        binding.linearlayoutAdminClients.setOnClickListener{
+            startActivity(Intent(this, CRUDClientsActivity::class.java))
+        }
+
+        binding.linearlayoutAdminPasswordreset.setOnClickListener {
+            startActivity(Intent(this, PasswordResetActivity::class.java))
         }
     }
 }

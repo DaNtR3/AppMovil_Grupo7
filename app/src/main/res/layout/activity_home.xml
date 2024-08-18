@@ -353,6 +353,7 @@
                             app:cardElevation="3dp">
 
                             <LinearLayout
+                                android:id="@+id/linearlayout_admin_clients"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical">
@@ -457,6 +458,7 @@
                             app:cardElevation="3dp">
 
                             <LinearLayout
+                                android:id="@+id/linearlayout_admin_productos"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical">
@@ -475,7 +477,7 @@
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"
-                                        app:srcCompat="@drawable/work_in_progress" />
+                                        app:srcCompat="@drawable/admin_productos" />
 
                                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -484,7 +486,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/gupter_bold"
-                                    android:text="Próximamente"
+                                    android:text="Inventario"
                                     android:textAlignment="center" />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
@@ -498,6 +500,7 @@
                             app:cardElevation="3dp">
 
                             <LinearLayout
+                                android:id="@+id/linearlayout_admin_passwordreset"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical">
@@ -516,7 +519,7 @@
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"
-                                        app:srcCompat="@drawable/work_in_progress" />
+                                        app:srcCompat="@drawable/password_reset" />
 
                                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -525,7 +528,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/gupter_bold"
-                                    android:text="Próximamente"
+                                    android:text="Restablecer contraseña"
                                     android:textAlignment="center" />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>

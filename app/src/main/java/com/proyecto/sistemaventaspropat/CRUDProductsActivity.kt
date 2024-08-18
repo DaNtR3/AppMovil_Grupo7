@@ -14,14 +14,21 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.proyecto.sistemaventaspropat.databinding.ActivityCrudProductsBinding
 import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 import java.io.InputStream
 import java.sql.PreparedStatement
 import java.sql.SQLException
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class CRUDProductsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCrudProductsBinding
     private var imageUri: Uri? = null
+
+
 
     private val imagePickerLauncher: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -54,6 +61,9 @@ class CRUDProductsActivity : AppCompatActivity() {
             val productCost = binding.txtCost.text.toString()
             val productAmount = binding.txtAmount.text.toString()
             val productColor = binding.spinnerColors.selectedItem.toString()
+            val currentDateTime = LocalDateTime.now()
+            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+            val formattedDateTime = currentDateTime.format(formatter)
 
             if (productName.isBlank() || productCost.isBlank() || productAmount.isBlank() || imageUri == null || productColor.isBlank()) {
                 Toast.makeText(
@@ -69,7 +79,8 @@ class CRUDProductsActivity : AppCompatActivity() {
                         productCost.toDouble(),
                         base64String,
                         productColor,
-                        productAmount.toInt()
+                        productAmount.toInt(),
+                        formattedDateTime
                     )
                 } else {
                     Toast.makeText(this, "Error al convertir la imagen...", Toast.LENGTH_SHORT)
@@ -83,6 +94,9 @@ class CRUDProductsActivity : AppCompatActivity() {
             val productAmount = binding.txtAmount.text.toString()
             val productColor = binding.spinnerColors.selectedItem.toString()
             val productId = binding.txtId.text.toString()
+            val currentDateTime = LocalDateTime.now()
+            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+            val formattedDateTime = currentDateTime.format(formatter)
 
             if (productName.isBlank() || productCost.isBlank() || productAmount.isBlank() || imageUri == null || productColor.isBlank() || productId.isBlank()) {
                 Toast.makeText(
@@ -99,7 +113,8 @@ class CRUDProductsActivity : AppCompatActivity() {
                         productCost.toDouble(),
                         base64String,
                         productColor,
-                        productAmount.toInt()
+                        productAmount.toInt(),
+                        formattedDateTime
                     )
                 } else {
                     Toast.makeText(this, "Error al convertir la imagen...", Toast.LENGTH_SHORT)
@@ -199,21 +214,40 @@ class CRUDProductsActivity : AppCompatActivity() {
         val bitmap = decodeBase64ToBitmap(base64String)
         // Set the Bitmap to the ImageView
         binding.previewImage.setImageBitmap(bitmap)
+        // Save the Bitmap to a file and get the Uri
+        imageUri = bitmap?.let { saveBitmapToFile(it) }
     }
 
+    private fun saveBitmapToFile(bitmap: Bitmap): Uri? {
+        val filename = "temp_image_${System.currentTimeMillis()}.jpg"
+        val file = File(cacheDir, filename)
+
+        return try {
+            FileOutputStream(file).use { outputStream ->
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+                outputStream.flush()
+            }
+            // Return the Uri of the saved file
+            Uri.fromFile(file)
+        } catch (e: IOException) {
+            e.printStackTrace()
+            null
+        }
+    }
 
     private fun addProduct(
         name: String,
         cost: Double,
         base64Image: String,
         color: String,
-        amount: Int
+        amount: Int,
+        date: String
     ) {
         val connectionsql = ConnectionSQLServer()
         val iva: Double = cost * 1.13
         val query = """
-            INSERT INTO productos (Nombre, imagen_producto, Colores, Cantidad_Disponible, CostoSinIVA, CostoConIVA)
-            VALUES (?, ?, ?, ?, ?, ?);
+            INSERT INTO productos (Nombre, imagen_producto, Colores, Cantidad_Disponible, CostoSinIVA, CostoConIVA, updated_at, created_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?);
         """
         try {
             val addProduct: PreparedStatement = connectionsql.dbConn()?.prepareStatement(query)!!
@@ -223,6 +257,8 @@ class CRUDProductsActivity : AppCompatActivity() {
             addProduct.setInt(4, amount)
             addProduct.setDouble(5, cost)
             addProduct.setDouble(6, iva)
+            addProduct.setString(7, date)
+            addProduct.setString(8, date)
             addProduct.executeUpdate()
             Toast.makeText(this, "Producto ingresado correctamente", Toast.LENGTH_SHORT).show()
             clearFields()
@@ -239,12 +275,13 @@ class CRUDProductsActivity : AppCompatActivity() {
         cost: Double,
         base64Image: String,
         color: String,
-        amount: Int
+        amount: Int,
+        date: String
     ) {
         if (doesProductExist(id)) {
             val query = """
             UPDATE productos
-            SET Nombre = ?, imagen_producto = ?, Colores = ?, Cantidad_Disponible = ?, CostoSinIVA = ?, CostoConIVA = ?
+            SET Nombre = ?, imagen_producto = ?, Colores = ?, Cantidad_Disponible = ?, CostoSinIVA = ?, CostoConIVA = ?, updated_at = ?
             WHERE ID_Producto = ?
         """
             try {
@@ -256,7 +293,8 @@ class CRUDProductsActivity : AppCompatActivity() {
                 statement?.setInt(4, amount)
                 statement?.setDouble(5, cost)
                 statement?.setDouble(6, cost * 1.13) // CostoConIVA
-                statement?.setInt(7, id)
+                statement?.setString(7, date)
+                statement?.setInt(8, id)
                 statement?.executeUpdate()
                 Toast.makeText(this, "Producto actualizado correctamente", Toast.LENGTH_SHORT)
                     .show()
@@ -297,9 +335,6 @@ class CRUDProductsActivity : AppCompatActivity() {
         }
     }
 
-
-
-
     private fun doesProductExist(productId: Int): Boolean {
         val query = "SELECT COUNT(*) FROM productos WHERE ID_Producto = ?"
         return try {
@@ -326,7 +361,7 @@ class CRUDProductsActivity : AppCompatActivity() {
 
     private fun populateFieldsIfProductExists(productId: Int) {
         val query = """
-        SELECT Nombre, imagen_producto, Colores, Cantidad_Disponible, CostoSinIVA, CostoConIVA 
+        SELECT Nombre, imagen_producto, Colores, Cantidad_Disponible, CostoSinIVA
         FROM productos 
         WHERE ID_Producto = ?
     """
@@ -343,7 +378,6 @@ class CRUDProductsActivity : AppCompatActivity() {
                     val productColor = resultSet.getString("Colores")
                     val quantity = resultSet.getInt("Cantidad_Disponible")
                     val costWithoutIva = resultSet.getDouble("CostoSinIVA")
-                    val costWithIva = resultSet.getDouble("CostoConIVA")
 
                     runOnUiThread {
                         binding.txtProductName.setText(productName)

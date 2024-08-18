@@ -70,7 +70,7 @@ class SignUpActivity : AppCompatActivity() {
                                     try {
                                         val addUser: PreparedStatement =
                                             connectionsql.dbConn()?.prepareStatement(
-                                                "INSERT INTO users (user_id, privileged_user, firstname, lastname, email, password_hash, address_details, phone, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+                                                "INSERT INTO users (user_id, privileged_user, firstname, lastname, email, password_hash, address_details, phone, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
                                             )!!
                                         addUser.setInt(1, userId)
                                         addUser.setString(2, "0")
@@ -81,6 +81,7 @@ class SignUpActivity : AppCompatActivity() {
                                         addUser.setString(7, address)
                                         addUser.setString(8, phone)
                                         addUser.setString(9, formattedDateTime)
+                                        addUser.setString(10, formattedDateTime)
                                         addUser.executeUpdate()
                                         Toast.makeText(
                                             this,
@@ -134,7 +135,7 @@ class SignUpActivity : AppCompatActivity() {
     // Utility function to check password strength
     private fun isValidPassword(password: String): Boolean {
 
-        return password.length >= 6
+        return password.length >= 8
     }
 }
 
