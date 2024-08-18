@@ -7,7 +7,7 @@ import java.sql.DriverManager
 import java.sql.SQLException
 
 class ConnectionSQLServer {
-    private val ip = "192.168.0.2:1433"
+    private val ip = "192.168.0.6:1433"
     private val db = "sistema_ventas_propat"
     private val username = "admin"
     private val password = "test123"
@@ -29,6 +29,5 @@ class ConnectionSQLServer {
             Log.e("Error: ", ex2.message!!)
         }
         return conn
-
     }
 }

@@ -23,7 +23,7 @@ class HomePageActivity : AppCompatActivity(){
         }
 
         binding.linearLayoutProductosBar.setOnClickListener{
-            startActivity(Intent(this, AddProductsActivity::class.java))
+            startActivity(Intent(this, CRUDProductsActivity::class.java))
         }
     }
 }

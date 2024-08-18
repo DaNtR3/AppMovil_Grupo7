@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue"
-    tools:context=".AddProductsActivity">
+    tools:context=".CRUDProductsActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.29" />
+        app:layout_constraintGuide_percent="0.24" />
 
     <TextView
         android:id="@+id/textView"
@@ -20,11 +20,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:fontFamily="@font/gupter_bold"
-        android:text="Añadir productos"
+        android:text="Administrador de productos"
         android:textColor="@color/white"
-        android:textSize="36dp"
+        android:textSize="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.125"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_products_back" />
 
@@ -54,12 +53,49 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <Button
+                android:id="@+id/btn_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/blue"
+                android:fontFamily="@font/gupter"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toTopOf="@+id/txt_product_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/txt_id"
+                app:layout_constraintTop_toTopOf="parent"
+                android:drawableRight="@drawable/baseline_search_24" />
+
+            <EditText
+                android:id="@+id/txt_id"
+                android:layout_width="290dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/edit_text_background"
+                android:drawableLeft="@drawable/baseline_vpn_key_24"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/blue"
+                android:ems="10"
+                android:fontFamily="@font/gupter"
+                android:hint="ID del producto"
+                android:inputType="numberDecimal"
+                android:padding="8dp"
+                android:textAlignment="textStart"
+                app:layout_constraintBottom_toTopOf="@+id/txt_product_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <EditText
                 android:id="@+id/txt_product_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="70dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/edit_text_background"
                 android:drawableLeft="@drawable/baseline_shopping_bag_24"
@@ -99,32 +135,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/txt_product_name" />
 
             <EditText
-                android:id="@+id/txt_iva"
+                android:id="@+id/txt_amount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/edit_text_background"
-                android:drawableLeft="@drawable/baseline_attach_money_24"
-                android:drawablePadding="8dp"
-                android:drawableTint="@color/blue"
-                android:ems="10"
-                android:fontFamily="@font/gupter"
-                android:hint="IVA"
-                android:inputType="numberDecimal"
-                android:padding="8dp"
-                android:textAlignment="textStart"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_cost" />
-
-            <EditText
-                android:id="@+id/txt_image_url"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/edit_text_background"
                 android:drawableLeft="@drawable/baseline_edit_document_24"
@@ -132,49 +147,116 @@
                 android:drawableTint="@color/blue"
                 android:ems="10"
                 android:fontFamily="@font/gupter"
-                android:hint="URL de la imagen"
-                android:inputType="text"
+                android:hint="Cantidad"
+                android:inputType="numberDecimal"
                 android:padding="8dp"
                 android:textAlignment="textStart"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_iva" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_cost" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_colors"
+                tools:layout_editor_absoluteX="0dp">
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/preview_image"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="110dp"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_colors"
+                tools:srcCompat="@tools:sample/avatars" />
 
             <Button
                 android:id="@+id/btn_add_product"
-                android:layout_width="0dp"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="52dp"
+                android:layout_marginTop="400dp"
+                android:layout_marginEnd="15dp"
                 android:backgroundTint="@color/blue"
                 android:fontFamily="@font/gupter"
-                android:text="Añadir producto"
+                android:text="Añadir"
                 android:textSize="18dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn_update_product"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:backgroundTint="@color/blue"
+                android:fontFamily="@font/gupter"
+                android:text="Actualizar"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_add_product" />
+
+            <Button
+                android:id="@+id/btn_upload_image"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="400dp"
+                android:backgroundTint="@color/blue"
+                android:fontFamily="@font/gupter"
+                android:text="Subir imagen"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/linearLayout"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn_delete_product"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:backgroundTint="@color/blue"
+                android:fontFamily="@font/gupter"
+                android:text="Eliminar"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_add_product" />
 
             <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent" />
 
-            <ImageView
-                android:id="@+id/img_preview"
-                android:layout_width="190dp"
-                android:layout_height="163dp"
-                app:layout_constraintBottom_toTopOf="@+id/btn_add_product"
+            <Spinner
+                android:id="@+id/spinner_colors"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/edit_text_background"
+                android:fontFamily="@font/gupter"
+                android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_image_url"
-                tools:srcCompat="@tools:sample/avatars" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_amount" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
