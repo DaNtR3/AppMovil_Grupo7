@@ -32,5 +32,21 @@ class HomePageActivity : AppCompatActivity(){
         binding.linearlayoutAdminPasswordreset.setOnClickListener {
             startActivity(Intent(this, PasswordResetActivity::class.java))
         }
+
+        binding.linearlayoutAboutUs.setOnClickListener{
+            startActivity(Intent(this, AboutUsActivity::class.java))
+        }
+
+        binding.linearlayoutMission.setOnClickListener{
+            startActivity(Intent(this, MissionActivity::class.java))
+        }
+
+        binding.linearlayoutVision.setOnClickListener{
+            startActivity(Intent(this, VisionActivity::class.java))
+        }
+
+        binding.linearlayoutContacts.setOnClickListener {
+            startActivity(Intent(this, ContactActivity::class.java))
+        }
     }
 }
