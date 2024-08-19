@@ -104,8 +104,8 @@
                 android:id="@+id/mapView"
                 android:layout_width="221dp"
                 android:layout_height="213dp"
-                tools:layout_editor_absoluteX="95dp"
-                tools:layout_editor_absoluteY="419dp" />
+                tools:layout_editor_absoluteX="82dp"
+                tools:layout_editor_absoluteY="414dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

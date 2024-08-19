@@ -48,5 +48,9 @@ class HomePageActivity : AppCompatActivity(){
         binding.linearlayoutContacts.setOnClickListener {
             startActivity(Intent(this, ContactActivity::class.java))
         }
+
+        binding.linearlayoutProductos.setOnClickListener {
+            startActivity(Intent(this, ShowProductsActivity::class.java))
+        }
     }
 }

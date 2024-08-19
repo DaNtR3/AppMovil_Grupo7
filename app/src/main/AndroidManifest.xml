@@ -38,6 +38,7 @@
         <activity android:name=".MissionActivity"/>
         <activity android:name=".VisionActivity"/>
         <activity android:name=".ContactActivity"/>
+        <activity android:name=".ShowProductsActivity"/>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
