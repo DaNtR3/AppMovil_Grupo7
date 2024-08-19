@@ -43,10 +43,11 @@
                 android:id="@+id/imageView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/products_start" />
+                app:srcCompat="@drawable/baseline_star_24" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -81,7 +82,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/txt_product_name"
             app:layout_constraintTop_toBottomOf="@+id/txt_product_name"
-            app:formattedCostWithIva="@{product.costWithIva}" /> <!-- Add this line -->
+            app:formattedCostWithIva="@{product.costWithIva}" />
 
         <ImageView
             android:id="@+id/imageView11"

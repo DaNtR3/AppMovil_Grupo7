@@ -63,29 +63,14 @@ class ShowProductsActivity : AppCompatActivity() {
 
         override fun onPostExecute(products: List<Product>) {
             super.onPostExecute(products)
-            productAdapter = ProductAdapter(products)
+            productAdapter = ProductAdapter(products) { product ->
+                val intent = Intent(this@ShowProductsActivity, ShowProductDetailsActivity::class.java)
+                intent.putExtra("PRODUCT_ID", product.id)
+                startActivity(intent)
+            }
             binding.recyclerviewPopularProducts.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             binding.recyclerviewPopularProducts.adapter = productAdapter
         }
-    }
-
-    private class ProductAdapter(private val products: List<Product>) :
-        RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
-
-        class ProductViewHolder(val binding: ActivityViewholderProductListBinding) : RecyclerView.ViewHolder(binding.root)
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-            val binding = ActivityViewholderProductListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-            return ProductViewHolder(binding)
-        }
-
-        override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-            val product = products[position]
-            holder.binding.product = product
-            holder.binding.executePendingBindings()
-        }
-
-        override fun getItemCount() = products.size
     }
 
     data class Product(
@@ -94,4 +79,35 @@ class ShowProductsActivity : AppCompatActivity() {
         val base64Image: String?,
         val costWithIva: Double
     )
+
+
+    //-------------------------------Product adapter START-------------------------------
+
+    private class ProductAdapter(
+        private val products: List<Product>,
+        private val onItemClick: (Product) -> Unit
+    ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+
+        class ProductViewHolder(val binding: ActivityViewholderProductListBinding) : RecyclerView.ViewHolder(binding.root) {
+            fun bind(product: Product, clickListener: (Product) -> Unit) {
+                binding.product = product
+                binding.executePendingBindings()
+                itemView.setOnClickListener { clickListener(product) }
+            }
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
+            val binding = ActivityViewholderProductListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            return ProductViewHolder(binding)
+        }
+
+        override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
+            val product = products[position]
+            holder.bind(product, onItemClick)
+        }
+
+        override fun getItemCount() = products.size
+    }
+
+    //-------------------------------Product adapter END-------------------------------
 }
