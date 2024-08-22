@@ -598,7 +598,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/linearLayout_productos_bar"
+                    android:id="@+id/linearLayout_cart"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.25"
@@ -619,7 +619,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/gupter_bold"
-                        android:text="Productos"
+                        android:text="Carrito"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="12dp" />

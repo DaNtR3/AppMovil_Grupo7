@@ -7,7 +7,7 @@
         <!-- Declare a variable of type Product -->
         <variable
             name="product"
-            type="com.proyecto.sistemaventaspropat.ShowProductsActivity.Product" />
+            type="com.proyecto.sistemaventaspropat.models.Product" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

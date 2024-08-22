@@ -52,5 +52,8 @@ class HomePageActivity : AppCompatActivity(){
         binding.linearlayoutProductos.setOnClickListener {
             startActivity(Intent(this, ShowProductsActivity::class.java))
         }
+        binding.linearLayoutCart.setOnClickListener {
+            startActivity(Intent(this, CartActivity::class.java))
+        }
     }
 }

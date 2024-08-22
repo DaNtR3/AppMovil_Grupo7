@@ -8,7 +8,7 @@
         <!-- Declare a variable of type Product -->
         <variable
             name="product"
-            type="com.proyecto.sistemaventaspropat.ShowProductDetailsActivity.Product" />
+            type="com.proyecto.sistemaventaspropat.models.Product" />
     </data>
 
 
