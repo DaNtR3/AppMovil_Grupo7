@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="usermodel"
+            type="com.proyecto.sistemaventaspropat.viewmodels.UserViewModel" />
+    </data>
+
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/blue"
@@ -85,7 +95,7 @@
                             android:text="No hay productos en el carrito"
                             android:textColor="@color/black"
                             android:textSize="18dp"
-                            android:visibility="gone" />
+                            android:visibility="gone"/>
 
                         <TextView
                             android:id="@+id/textView17"
@@ -266,7 +276,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
                                 android:fontFamily="@font/gupter_bold"
-                                android:text="Dirección"
+                                android:text="@{usermodel.user.address}"
                                 android:textColor="@color/white"
                                 android:textSize="20sp"
                                 app:layout_constraintBottom_toBottomOf="@+id/imageView10"
@@ -360,3 +370,5 @@
 
         </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

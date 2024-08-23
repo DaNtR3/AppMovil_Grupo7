@@ -1,4 +1,4 @@
-package com.proyecto.sistemaventaspropat
+package com.proyecto.sistemaventaspropat.dbconnection
 
 import android.os.StrictMode
 import android.util.Log
@@ -7,7 +7,7 @@ import java.sql.DriverManager
 import java.sql.SQLException
 
 class ConnectionSQLServer {
-    private val ip = "192.168.0.6:1433"
+    private val ip = "192.168.0.2:1433"
     private val db = "sistema_ventas_propat"
     private val username = "admin"
     private val password = "test123"

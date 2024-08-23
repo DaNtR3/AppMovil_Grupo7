@@ -5,6 +5,7 @@ data class CartItem(
     val name: String,
     val base64Image: String?,
     val costWithIVA: Double,
+    val costWithoutIva: Double,
     val quantity: Int
 ) {
     val totalCost: Double

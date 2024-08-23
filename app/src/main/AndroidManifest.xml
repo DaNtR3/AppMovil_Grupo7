@@ -42,7 +42,9 @@
         <activity android:name=".ShowProductsActivity"/>
         <activity android:name=".ShowProductDetailsActivity"/>
         <activity android:name=".CartActivity"/>
-        <activity android:name=".Car"/>
+        <activity android:name=".ShowOrdersActivity"/>
+
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

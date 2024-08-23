@@ -3,15 +3,12 @@ package com.proyecto.sistemaventaspropat
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.proyecto.sistemaventaspropat.adapters.ProductAdapter
 import com.proyecto.sistemaventaspropat.models.Product
 import com.proyecto.sistemaventaspropat.databinding.ActivityShowProductsBinding
-import com.proyecto.sistemaventaspropat.databinding.ActivityViewholderProductListBinding
+import com.proyecto.sistemaventaspropat.dbconnection.ConnectionSQLServer
 import com.proyecto.sistemaventaspropat.viewmodels.CartViewModel
 import com.proyecto.sistemaventaspropat.viewmodels.MyApplication
 
@@ -43,7 +40,7 @@ class ShowProductsActivity : AppCompatActivity() {
         override fun doInBackground(vararg params: Void?): List<Product> {
             val products = mutableListOf<Product>()
             val query = """
-                SELECT ID_Producto, Nombre, imagen_producto, CostoConIVA, Cantidad_Disponible, Colores
+                SELECT ID_Producto, Nombre, imagen_producto, CostoConIVA, Cantidad_Disponible, Colores, CostoSinIVA
                 FROM productos
             """
             try {
@@ -58,8 +55,9 @@ class ShowProductsActivity : AppCompatActivity() {
                     val costWithIva = resultSet.getDouble("CostoConIVA")
                     val amount = resultSet.getInt("Cantidad_Disponible")
                     val color = resultSet.getString("Colores")
+                    val costWithoutIva = resultSet.getDouble("CostoSinIVA")
 
-                    products.add(Product(id, name, base64Image, costWithIva, amount, color))
+                    products.add(Product(id, name, base64Image, costWithIva, costWithoutIva, amount, color))
                 }
 
                 resultSet?.close()

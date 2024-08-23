@@ -1,11 +1,11 @@
 package com.proyecto.sistemaventaspropat
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.proyecto.sistemaventaspropat.databinding.ActivitySignupBinding
+import com.proyecto.sistemaventaspropat.dbconnection.ConnectionSQLServer
 import org.mindrot.jbcrypt.BCrypt
 import java.sql.PreparedStatement
 import java.sql.SQLException
